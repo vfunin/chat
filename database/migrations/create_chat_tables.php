@@ -25,8 +25,7 @@ class CreateChatTables extends Migration
         Schema::create(ConfigurationManager::PARTICIPATION_TABLE, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('conversation_id')->unsigned();
-            $table->bigInteger('messageable_id')->unsigned();
-            $table->string('messageable_type');
+            $table->uuidMorphs('messageable')->unsigned();
             $table->text('settings')->nullable();
             $table->timestamps();
 
@@ -61,8 +60,7 @@ class CreateChatTables extends Migration
         Schema::create(ConfigurationManager::MESSAGE_NOTIFICATIONS_TABLE, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('message_id')->unsigned();
-            $table->bigInteger('messageable_id')->unsigned();
-            $table->string('messageable_type');
+            $table->uuidMorphs('messageable');
             $table->bigInteger('conversation_id')->unsigned();
             $table->bigInteger('participation_id')->unsigned();
             $table->boolean('is_seen')->default(false);

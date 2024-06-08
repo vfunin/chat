@@ -14,6 +14,8 @@ class Participation extends BaseModel
     protected $table = ConfigurationManager::PARTICIPATION_TABLE;
     protected $fillable = [
         'conversation_id',
+        'messageable_id',
+        'messageable_type',
         'settings',
     ];
 
