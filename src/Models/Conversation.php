@@ -49,7 +49,7 @@ class Conversation extends BaseModel
 
     public function getParticipants()
     {
-        return $this->participants()->get()->pluck('messageable');
+        return $this->participants()->with('messageable')->get()->pluck('messageable');
     }
 
     /**
